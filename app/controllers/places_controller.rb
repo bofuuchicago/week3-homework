@@ -58,20 +58,4 @@ class PlacesController < ApplicationController
     p.save
     redirect_to "/places/#{p.id}/"
   end
-
-  def review
-    r = Review.new
-    r[:placeid] = params["id"]
-    r[:title] = params["title"]
-    r[:rate] = params["rate"]
-    r[:description] = params["description"]
-    r.save
-    redirect_to "/places/#{r.placeid}"
-  end
-
-
-
-
-
-
 end
