@@ -20,11 +20,4 @@ ActiveRecord::Schema.define(version: 0) do
     t.text    "description",     limit: 255
   end
 
-  create_table "reviews", force: true do |t|
-    t.integer "placeid"
-    t.string  "title"
-    t.integer "rate"
-    t.text    "description", limit: 255
-  end
-
 end

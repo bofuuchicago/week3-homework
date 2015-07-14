@@ -1,52 +1,16 @@
-<h3 style="text-align:center; background-color:blue; color:white; padding:5px"><%= @place[:title] %></h3>
+<h3 style="text-align:center; background-color:darkgrey; color:lightgrey; padding:5px"><%= @place[:title] %></h3>
 <h5>
-  <%= number_to_currency(@place[:admission_price]/100.0, precision: 2) %>
+  <%= number_to_currency(@place[:admission_price] / 100.0, precision: 2) %>
   <%= link_to "Edit", "/places/#{@place.id}/edit"%>
 </h5>
 <div class="row">
-  <div class="col-xs-6">
-    <%= image_tag @place[:photo_url], height: '300'%>
+  <div>
+    <%= image_tag @place[:photo_url], height: '300', width: '550'%>
   </div>
-  <div class="col-xs-5">
+  <br/>
+  <div>
     <p>
       <%= @place[:description]%>
     </p>
   </div>
 </div>
-<hr>
-<form action="/places/<%=@place[:id]%>/review" method="get">
-  <div class="col-xs-2">
-    Title
-  </div>
-  <div class="col-xs-10">
-    <input name="title" type="text" size="61"><br><br>
-  </div>
-  <div class="col-xs-2">
-    Description
-  </div>
-  <div class="col-xs-10">
-    <textarea name="description" cols="60" rows="4" placeholder="Please input the description"></textarea>
-  </div>
-  <div class="col-xs-13">
-    Rate:
-    <select name="rate">
-      <option value="1">1 star</option>
-      <option value="2">2 star</option>
-      <option value="3">3 star</option>
-      <option value="4">4 star</option>
-      <option value="5">5 star</option>
-    </select>
-    <button class="btn btn-success pull-right" type="submit">Submit</button>
-  </div>
-</form>
-<hr>
-<% @reviews.each do |r|%>
-    <div class="jumbotron">
-      <h3><%= r[:title]%></h3>
-      <% for i in 1..r[:rate] do%>
-          &#9734
-      <%end -%>
-      <br>
-      <p><%= r[:description] %><br></p>
-    </div>
-<% end -%>
