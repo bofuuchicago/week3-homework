@@ -1,0 +1,12 @@
+<p>
+  <%= link_to "Add a new place", '/places/new'%>
+</p>
+<ul>
+  <% @places.each do |place|%>
+      <li>
+        <%= link_to place[:title], "/places/#{place.id}" %>
+        <%= number_to_currency(place[:admission_price]/100.0, precision: 2) %>
+        <%= link_to "Delete", "/places/#{place.id}/delete" %>
+      </li>
+  <% end -%>
+</ul>

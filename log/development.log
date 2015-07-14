@@ -10,3 +10,319 @@ Started GET "/" for 127.0.0.1 at 2015-07-08 12:01:38 -0500
 Processing by Rails::WelcomeController#index as HTML
   Rendered /Users/jcohen/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/railties-4.1.8/lib/rails/templates/rails/welcome/index.html.erb (0.1ms)
 Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-13 14:57:11 -0500
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/fubo/.rvm/gems/ruby-2.2.1/gems/railties-4.1.8/lib/rails/templates/rails/welcome/index.html.erb (1.9ms)
+Completed 200 OK in 20ms (Views: 9.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-13 20:36:12 -0500
+Processing by PlacesController#index as HTML
+  [1m[36mPlace Load (0.4ms)[0m  [1mSELECT "places".* FROM "places"[0m
+SQLite3::SQLException: no such table: places: SELECT "places".* FROM "places"
+  Rendered places/index.erb within layouts/application (5.2ms)
+Completed 500 Internal Server Error in 47ms
+
+ActionView::Template::Error (SQLite3::SQLException: no such table: places: SELECT "places".* FROM "places"):
+    2:   <%= link_to "Add a new place", '/places/new'%>
+    3: </p>
+    4: <ul>
+    5:   <% @places.each do |place|%>
+    6:       <li>
+    7:         <%= link_to place[:title], "/places/#{place.id}" %>
+    8:         <%= number_to_currency(place[:admission_price]/100.0, precision: 2) %>
+  app/views/places/index.erb:5:in `_app_views_places_index_erb___4180091333256752198_70134422134140'
+  app/controllers/places_controller.rb:5:in `index'
+
+
+  Rendered /Users/fubo/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Users/fubo/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/fubo/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (32.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-13 20:40:23 -0500
+Processing by PlacesController#index as HTML
+  [1m[35mPlace Load (0.4ms)[0m  SELECT "places".* FROM "places"
+SQLite3::SQLException: no such table: places: SELECT "places".* FROM "places"
+  Rendered places/index.erb within layouts/application (2.5ms)
+Completed 500 Internal Server Error in 9ms
+
+ActionView::Template::Error (SQLite3::SQLException: no such table: places: SELECT "places".* FROM "places"):
+    2:   <%= link_to "Add a new place", '/places/new'%>
+    3: </p>
+    4: <ul>
+    5:   <% @places.each do |place|%>
+    6:       <li>
+    7:         <%= link_to place[:title], "/places/#{place.id}" %>
+    8:         <%= number_to_currency(place[:admission_price]/100.0, precision: 2) %>
+  app/views/places/index.erb:5:in `_app_views_places_index_erb___4180091333256752198_70134422134140'
+  app/controllers/places_controller.rb:5:in `index'
+
+
+  Rendered /Users/fubo/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Users/fubo/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/fubo/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (30.8ms)
+  [1m[36m (3.6ms)[0m  [1mCREATE TABLE "places" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL) [0m
+  [1m[35m (1.4ms)[0m  ALTER TABLE "places" ADD "title" varchar(255)
+  [1m[36m (1.2ms)[0m  [1mALTER TABLE "places" ADD "photo_url" varchar(255)[0m
+  [1m[35m (0.9ms)[0m  ALTER TABLE "places" ADD "admission_price" integer
+  [1m[36m (0.8ms)[0m  [1mALTER TABLE "places" ADD "description" varchar(255)[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "reviews" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL) 
+  [1m[36m (0.8ms)[0m  [1mALTER TABLE "reviews" ADD "placeid" integer[0m
+  [1m[35m (0.8ms)[0m  ALTER TABLE "reviews" ADD "title" varchar(255)
+  [1m[36m (0.9ms)[0m  [1mALTER TABLE "reviews" ADD "rate" integer[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "reviews" ADD "description" varchar(255)
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mSQL (1.0ms)[0m  DELETE FROM "places"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "places" ("admission_price", "description", "photo_url", "title") VALUES (?, ?, ?, ?)  [["admission_price", 0], ["description", "Completed in 1897 as Chicago’s first central public library, the building was designed to impress and to prove that Chicago had grown into a sophisticated metropolis. The country’s top architects and craftsmen used the most sumptuous materials, such as rare imported marbles, polished brass, fine hardwoods, and mosaics of Favrile glass, mother-of-pearl and colored stone, to create an architectural showplace. Located on the south side of the building, the world’s largest stained glass Tiffany dome ― 38 feet in diameter with some 30,000 pieces of glass ― was restored to its original splendor in 2008. On the north side of the building is a 40-foot-diameter dome with some 50,000 pieces of glass in an intricate Renaissance pattern, designed by Healy & Millet. "], ["photo_url", "http://s3-media1.fl.yelpassets.com/bphoto/XouVPA_ys5PajuKSvbt1_w/l.jpg"], ["title", "Chicago Cultural Center"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "places" ("admission_price", "description", "photo_url", "title") VALUES (?, ?, ?, ?)[0m  [["admission_price", 1500], ["description", "The Art Institute of Chicago (AIC) is an encyclopedic art museum located in Chicago's Grant Park. It features a collection of Impressionist and Post-Impressionist art in its permanent collection. Its holdings also include American art, Old Masters, European and American decorative arts, Asian art, modern and contemporary art, and architecture and industrial and graphic design. In addition, it houses the Ryerson & Burnham Libraries.Tracing its history to a free art school and gallery founded in 1866, the museum is located at 111 South Michigan Avenue in the Chicago Landmark Historic Michigan Boulevard District. It is associated with the School of the Art Institute of Chicago and is overseen by Director and President Douglas Druick. At one million square feet, it is the second-largest art museum in the United States, after the Metropolitan Museum of Art."], ["photo_url", "https://www.gatewayticketing.com/Portals/0/Images/Press%20Releases/AIC-Facade-North-View.jpg"], ["title", "The Art Institute of Chicago"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "places" ("admission_price", "description", "photo_url", "title") VALUES (?, ?, ?, ?)  [["admission_price", 1950], ["description", "The Willis Tower, built as and still commonly referred to as Sears Tower, is a 108-story, 1,451-foot (442 m) skyscraper in Chicago, Illinois, United States. At completion in 1973, it surpassed the World Trade Center towers in New York to become the tallest building in the world, a title it held for nearly 25 years. The Willis Tower is the second-tallest building in the United States and the 12th-tallest in the world. More than one million people visit its observation deck each year, making it one of Chicago's most popular tourist destinations. The structure was renamed in 2009 by the Willis Group as part of its lease on a portion of the tower's space."], ["photo_url", "http://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Sears_Tower_ss.jpg/480px-Sears_Tower_ss.jpg"], ["title", "Willis Tower"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "places" ("admission_price", "description", "photo_url", "title") VALUES (?, ?, ?, ?)[0m  [["admission_price", 0], ["description", "Garfield Park Conservatory, located in Garfield Park in Chicago is one of the largest greenhouse conservatories in the United States. The Garfield Park Conservatory occupies approximately 4.5 acres (18,000 m2) inside and out and contains a number of permanent plant exhibits incorporating specimens from around the world (including some cycads that are over 200 years old)Along with the Lincoln Park Conservatory on Chicago's north side, the Garfield Park Conservatory provides significant horticultural collections, educational programs and community outreach efforts."], ["photo_url", "http://chicagocommunitygardens.org/wp-content/uploads/2014/05/garfieldParkCons_1.jpg"], ["title", "Garfield Park Conservatory"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "places" ("admission_price", "description", "photo_url", "title") VALUES (?, ?, ?, ?)  [["admission_price", 0], ["description", "A world-renowned independent research library in Chicago, the Newberry offers readers an extensive noncirculating collection of rare books, maps, music, manuscripts, and other printed material spanning six centuries. Its staff provides award-winning service and supports a rich array of programmatic opportunities."], ["photo_url", "http://publications.newberry.org/indiansofthemidwest/wp-content/gallery/aboutus270/newberry-library.jpg"], ["title", "Newberry Library"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[36mPlace Load (0.2ms)[0m  [1mSELECT "places".* FROM "places"[0m
+  [1m[35mReview Load (0.2ms)[0m  SELECT "reviews".* FROM "reviews"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TEMPORARY TABLE "aplaces" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "photo_url" varchar(255), "admission_price" integer, "description" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "places"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "aplaces" ("id","title","photo_url","admission_price","description") VALUES (1, 'Chicago Cultural Center', 'http://s3-media1.fl.yelpassets.com/bphoto/XouVPA_ys5PajuKSvbt1_w/l.jpg', 0, 'Completed in 1897 as Chicago’s first central public library, the building was designed to impress and to prove that Chicago had grown into a sophisticated metropolis. The country’s top architects and craftsmen used the most sumptuous materials, such as rare imported marbles, polished brass, fine hardwoods, and mosaics of Favrile glass, mother-of-pearl and colored stone, to create an architectural showplace. Located on the south side of the building, the world’s largest stained glass Tiffany dome ― 38 feet in diameter with some 30,000 pieces of glass ― was restored to its original splendor in 2008. On the north side of the building is a 40-foot-diameter dome with some 50,000 pieces of glass in an intricate Renaissance pattern, designed by Healy & Millet. ')
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "aplaces" ("id","title","photo_url","admission_price","description") VALUES (2, 'The Art Institute of Chicago', 'https://www.gatewayticketing.com/Portals/0/Images/Press%20Releases/AIC-Facade-North-View.jpg', 1500, 'The Art Institute of Chicago (AIC) is an encyclopedic art museum located in Chicago''s Grant Park. It features a collection of Impressionist and Post-Impressionist art in its permanent collection. Its holdings also include American art, Old Masters, European and American decorative arts, Asian art, modern and contemporary art, and architecture and industrial and graphic design. In addition, it houses the Ryerson & Burnham Libraries.Tracing its history to a free art school and gallery founded in 1866, the museum is located at 111 South Michigan Avenue in the Chicago Landmark Historic Michigan Boulevard District. It is associated with the School of the Art Institute of Chicago and is overseen by Director and President Douglas Druick. At one million square feet, it is the second-largest art museum in the United States, after the Metropolitan Museum of Art.')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "aplaces" ("id","title","photo_url","admission_price","description") VALUES (3, 'Willis Tower', 'http://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Sears_Tower_ss.jpg/480px-Sears_Tower_ss.jpg', 1950, 'The Willis Tower, built as and still commonly referred to as Sears Tower, is a 108-story, 1,451-foot (442 m) skyscraper in Chicago, Illinois, United States. At completion in 1973, it surpassed the World Trade Center towers in New York to become the tallest building in the world, a title it held for nearly 25 years. The Willis Tower is the second-tallest building in the United States and the 12th-tallest in the world. More than one million people visit its observation deck each year, making it one of Chicago''s most popular tourist destinations. The structure was renamed in 2009 by the Willis Group as part of its lease on a portion of the tower''s space.')
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "aplaces" ("id","title","photo_url","admission_price","description") VALUES (4, 'Garfield Park Conservatory', 'http://chicagocommunitygardens.org/wp-content/uploads/2014/05/garfieldParkCons_1.jpg', 0, 'Garfield Park Conservatory, located in Garfield Park in Chicago is one of the largest greenhouse conservatories in the United States. The Garfield Park Conservatory occupies approximately 4.5 acres (18,000 m2) inside and out and contains a number of permanent plant exhibits incorporating specimens from around the world (including some cycads that are over 200 years old)Along with the Lincoln Park Conservatory on Chicago''s north side, the Garfield Park Conservatory provides significant horticultural collections, educational programs and community outreach efforts.')[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "aplaces" ("id","title","photo_url","admission_price","description") VALUES (5, 'Newberry Library', 'http://publications.newberry.org/indiansofthemidwest/wp-content/gallery/aboutus270/newberry-library.jpg', 0, 'A world-renowned independent research library in Chicago, the Newberry offers readers an extensive noncirculating collection of rare books, maps, music, manuscripts, and other printed material spanning six centuries. Its staff provides award-winning service and supports a rich array of programmatic opportunities.')
+  [1m[36m (1.1ms)[0m  [1mDROP TABLE "places"[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "places" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "photo_url" varchar(255), "admission_price" integer, "description" text(255)) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "aplaces"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "places" ("id","title","photo_url","admission_price","description") VALUES (1, 'Chicago Cultural Center', 'http://s3-media1.fl.yelpassets.com/bphoto/XouVPA_ys5PajuKSvbt1_w/l.jpg', 0, 'Completed in 1897 as Chicago’s first central public library, the building was designed to impress and to prove that Chicago had grown into a sophisticated metropolis. The country’s top architects and craftsmen used the most sumptuous materials, such as rare imported marbles, polished brass, fine hardwoods, and mosaics of Favrile glass, mother-of-pearl and colored stone, to create an architectural showplace. Located on the south side of the building, the world’s largest stained glass Tiffany dome ― 38 feet in diameter with some 30,000 pieces of glass ― was restored to its original splendor in 2008. On the north side of the building is a 40-foot-diameter dome with some 50,000 pieces of glass in an intricate Renaissance pattern, designed by Healy & Millet. ')
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "places" ("id","title","photo_url","admission_price","description") VALUES (2, 'The Art Institute of Chicago', 'https://www.gatewayticketing.com/Portals/0/Images/Press%20Releases/AIC-Facade-North-View.jpg', 1500, 'The Art Institute of Chicago (AIC) is an encyclopedic art museum located in Chicago''s Grant Park. It features a collection of Impressionist and Post-Impressionist art in its permanent collection. Its holdings also include American art, Old Masters, European and American decorative arts, Asian art, modern and contemporary art, and architecture and industrial and graphic design. In addition, it houses the Ryerson & Burnham Libraries.Tracing its history to a free art school and gallery founded in 1866, the museum is located at 111 South Michigan Avenue in the Chicago Landmark Historic Michigan Boulevard District. It is associated with the School of the Art Institute of Chicago and is overseen by Director and President Douglas Druick. At one million square feet, it is the second-largest art museum in the United States, after the Metropolitan Museum of Art.')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "places" ("id","title","photo_url","admission_price","description") VALUES (3, 'Willis Tower', 'http://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Sears_Tower_ss.jpg/480px-Sears_Tower_ss.jpg', 1950, 'The Willis Tower, built as and still commonly referred to as Sears Tower, is a 108-story, 1,451-foot (442 m) skyscraper in Chicago, Illinois, United States. At completion in 1973, it surpassed the World Trade Center towers in New York to become the tallest building in the world, a title it held for nearly 25 years. The Willis Tower is the second-tallest building in the United States and the 12th-tallest in the world. More than one million people visit its observation deck each year, making it one of Chicago''s most popular tourist destinations. The structure was renamed in 2009 by the Willis Group as part of its lease on a portion of the tower''s space.')
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "places" ("id","title","photo_url","admission_price","description") VALUES (4, 'Garfield Park Conservatory', 'http://chicagocommunitygardens.org/wp-content/uploads/2014/05/garfieldParkCons_1.jpg', 0, 'Garfield Park Conservatory, located in Garfield Park in Chicago is one of the largest greenhouse conservatories in the United States. The Garfield Park Conservatory occupies approximately 4.5 acres (18,000 m2) inside and out and contains a number of permanent plant exhibits incorporating specimens from around the world (including some cycads that are over 200 years old)Along with the Lincoln Park Conservatory on Chicago''s north side, the Garfield Park Conservatory provides significant horticultural collections, educational programs and community outreach efforts.')[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "places" ("id","title","photo_url","admission_price","description") VALUES (5, 'Newberry Library', 'http://publications.newberry.org/indiansofthemidwest/wp-content/gallery/aboutus270/newberry-library.jpg', 0, 'A world-renowned independent research library in Chicago, the Newberry offers readers an extensive noncirculating collection of rare books, maps, music, manuscripts, and other printed material spanning six centuries. Its staff provides award-winning service and supports a rich array of programmatic opportunities.')
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "aplaces"[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "areviews" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "placeid" integer, "title" varchar(255), "rate" integer, "description" varchar(255)) 
+  [1m[36m (0.2ms)[0m  [1mSELECT * FROM "reviews"[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "reviews"
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "reviews" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "placeid" integer, "title" varchar(255), "rate" integer, "description" text(255)) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "areviews"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "areviews"[0m
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mPlace Load (0.3ms)[0m  [1mSELECT "places".* FROM "places"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-13 20:53:20 -0500
+Processing by PlacesController#index as HTML
+  [1m[36mPlace Load (1.2ms)[0m  [1mSELECT "places".* FROM "places"[0m
+  Rendered places/index.erb within layouts/application (17.4ms)
+Completed 200 OK in 1189ms (Views: 1185.8ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-13 21:06:17 -0500
+Processing by PlacesController#index as HTML
+  [1m[35mPlace Load (0.2ms)[0m  SELECT "places".* FROM "places"
+  Rendered places/index.erb within layouts/application (2.6ms)
+Completed 200 OK in 29ms (Views: 27.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-13 21:06:22 -0500
+Processing by PlacesController#index as HTML
+  [1m[36mPlace Load (0.2ms)[0m  [1mSELECT "places".* FROM "places"[0m
+  Rendered places/index.erb within layouts/application (3.2ms)
+Completed 200 OK in 33ms (Views: 32.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/places/new" for 127.0.0.1 at 2015-07-13 21:06:29 -0500
+
+ActionController::RoutingError (No route matches [GET] "/places/new"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/fubo/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/fubo/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/fubo/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/fubo/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /Users/fubo/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.8ms)
+  Rendered /Users/fubo/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (7.8ms)
+  Rendered /Users/fubo/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (57.1ms)
+
+
+Started GET "/places/new" for 127.0.0.1 at 2015-07-13 21:06:29 -0500
+
+ActionController::RoutingError (No route matches [GET] "/places/new"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/fubo/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/fubo/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/fubo/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/fubo/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /Users/fubo/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.8ms)
+  Rendered /Users/fubo/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendered /Users/fubo/.rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (44.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-13 21:06:36 -0500
+Processing by PlacesController#index as HTML
+  [1m[35mPlace Load (0.2ms)[0m  SELECT "places".* FROM "places"
+  Rendered places/index.erb within layouts/application (2.3ms)
+Completed 200 OK in 29ms (Views: 28.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/places/1" for 127.0.0.1 at 2015-07-13 21:16:31 -0500
+Processing by PlacesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPlace Load (0.1ms)[0m  [1mSELECT  "places".* FROM "places"  WHERE "places"."id" = 1 LIMIT 1[0m
+  [1m[35mReview Load (0.1ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."placeid" = 1  ORDER BY "reviews"."id" DESC
+  Rendered places/show.erb within layouts/application (2.0ms)
+Completed 200 OK in 34ms (Views: 21.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/places/2" for 127.0.0.1 at 2015-07-13 21:17:48 -0500
+Processing by PlacesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPlace Load (0.1ms)[0m  [1mSELECT  "places".* FROM "places"  WHERE "places"."id" = 2 LIMIT 1[0m
+  [1m[35mReview Load (0.1ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."placeid" = 2  ORDER BY "reviews"."id" DESC
+  Rendered places/show.erb within layouts/application (0.8ms)
+Completed 200 OK in 24ms (Views: 22.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/places/2/edit" for 127.0.0.1 at 2015-07-13 21:23:51 -0500
+Processing by PlacesController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPlace Load (0.3ms)[0m  [1mSELECT  "places".* FROM "places"  WHERE "places"."id" = 2 LIMIT 1[0m
+  Rendered places/edit.erb within layouts/application (0.5ms)
+Completed 200 OK in 31ms (Views: 29.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/places/2/update?title=The+Art+Institute+of+Chicago&photo_url=https%3A%2F%2Fwww.gatewayticketing.com%2FPortals%2F0%2FImages%2FPress%2520Releases%2FAIC-Facade-North-View.jpg&price=14.0&description=The+Art+Institute+of+Chicago+%28AIC%29+is+an+encyclopedic+art+museum+located+in+Chicago%27s+Grant+Park.+It+features+a+collection+of+Impressionist+and+Post-Impressionist+art+in+its+permanent+collection.+Its+holdings+also+include+American+art%2C+Old+Masters%2C+European+and+American+decorative+arts%2C+Asian+art%2C+modern+and+contemporary+art%2C+and+architecture+and+industrial+and+graphic+design.+In+addition%2C+it+houses+the+Ryerson+%26+Burnham+Libraries.Tracing+its+history+to+a+free+art+school+and+gallery+founded+in+1866%2C+the+museum+is+located+at+111+South+Michigan+Avenue+in+the+Chicago+Landmark+Historic+Michigan+Boulevard+District.+It+is+associated+with+the+School+of+the+Art+Institute+of+Chicago+and+is+overseen+by+Director+and+President+Douglas+Druick.+At+one+million+square+feet%2C+it+is+the+second-largest+art+museum+in+the+United+States%2C+after+the+Metropolitan+Museum+of+Art." for 127.0.0.1 at 2015-07-13 21:23:58 -0500
+Processing by PlacesController#update as HTML
+  Parameters: {"title"=>"The Art Institute of Chicago", "photo_url"=>"https://www.gatewayticketing.com/Portals/0/Images/Press%20Releases/AIC-Facade-North-View.jpg", "price"=>"14.0", "description"=>"The Art Institute of Chicago (AIC) is an encyclopedic art museum located in Chicago's Grant Park. It features a collection of Impressionist and Post-Impressionist art in its permanent collection. Its holdings also include American art, Old Masters, European and American decorative arts, Asian art, modern and contemporary art, and architecture and industrial and graphic design. In addition, it houses the Ryerson & Burnham Libraries.Tracing its history to a free art school and gallery founded in 1866, the museum is located at 111 South Michigan Avenue in the Chicago Landmark Historic Michigan Boulevard District. It is associated with the School of the Art Institute of Chicago and is overseen by Director and President Douglas Druick. At one million square feet, it is the second-largest art museum in the United States, after the Metropolitan Museum of Art.", "id"=>"2"}
+  [1m[35mPlace Load (0.2ms)[0m  SELECT  "places".* FROM "places"  WHERE "places"."id" = 2 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "places" SET "admission_price" = ? WHERE "places"."id" = 2  [["admission_price", 1400]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/places/2/
+Completed 302 Found in 18ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/places/2/" for 127.0.0.1 at 2015-07-13 21:23:58 -0500
+Processing by PlacesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mPlace Load (0.2ms)[0m  SELECT  "places".* FROM "places"  WHERE "places"."id" = 2 LIMIT 1
+  [1m[36mReview Load (0.1ms)[0m  [1mSELECT "reviews".* FROM "reviews"  WHERE "reviews"."placeid" = 2  ORDER BY "reviews"."id" DESC[0m
+  Rendered places/show.erb within layouts/application (1.7ms)
+Completed 200 OK in 26ms (Views: 24.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/places/2/edit" for 127.0.0.1 at 2015-07-13 21:24:00 -0500
+Processing by PlacesController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mPlace Load (0.1ms)[0m  SELECT  "places".* FROM "places"  WHERE "places"."id" = 2 LIMIT 1
+  Rendered places/edit.erb within layouts/application (0.5ms)
+Completed 200 OK in 22ms (Views: 20.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/places/2/" for 127.0.0.1 at 2015-07-13 21:24:03 -0500
+Processing by PlacesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPlace Load (0.1ms)[0m  [1mSELECT  "places".* FROM "places"  WHERE "places"."id" = 2 LIMIT 1[0m
+  [1m[35mReview Load (0.1ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."placeid" = 2  ORDER BY "reviews"."id" DESC
+  Rendered places/show.erb within layouts/application (1.0ms)
+Completed 200 OK in 22ms (Views: 20.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-13 21:24:06 -0500
+Processing by PlacesController#index as HTML
+  [1m[36mPlace Load (0.2ms)[0m  [1mSELECT "places".* FROM "places"[0m
+  Rendered places/index.erb within layouts/application (4.1ms)
+Completed 200 OK in 29ms (Views: 28.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/places/2" for 127.0.0.1 at 2015-07-13 21:24:08 -0500
+Processing by PlacesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mPlace Load (0.2ms)[0m  SELECT  "places".* FROM "places"  WHERE "places"."id" = 2 LIMIT 1
+  [1m[36mReview Load (0.1ms)[0m  [1mSELECT "reviews".* FROM "reviews"  WHERE "reviews"."placeid" = 2  ORDER BY "reviews"."id" DESC[0m
+  Rendered places/show.erb within layouts/application (1.1ms)
+Completed 200 OK in 24ms (Views: 22.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/places/5/delete" for 127.0.0.1 at 2015-07-13 21:24:51 -0500
+Processing by PlacesController#delete as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mPlace Load (0.1ms)[0m  SELECT  "places".* FROM "places"  WHERE "places"."id" = 5 LIMIT 1
+  [1m[36mSQL (1.6ms)[0m  [1mDELETE FROM "places" WHERE "places"."id" = 5[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 4ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-13 21:24:51 -0500
+Processing by PlacesController#index as HTML
+  [1m[35mPlace Load (0.2ms)[0m  SELECT "places".* FROM "places"
+  Rendered places/index.erb within layouts/application (1.5ms)
+Completed 200 OK in 26ms (Views: 25.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-13 21:24:53 -0500
+Processing by PlacesController#index as HTML
+  [1m[36mPlace Load (0.2ms)[0m  [1mSELECT "places".* FROM "places"[0m
+  Rendered places/index.erb within layouts/application (1.4ms)
+Completed 200 OK in 21ms (Views: 20.5ms | ActiveRecord: 0.2ms)
